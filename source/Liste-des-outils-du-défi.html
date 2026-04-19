@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Playables SDK -->
+<script>// Playables SDK v1.0.0
+// Game lifecycle bridge: rAF-based game-ready detection + event communication
+(function() {
+  'use strict';
+
+  // Idempotency: skip if already initialized (e.g., server-side injection
+  // followed by client-side inject-javascript via the Bloks webview component).
+  if (window.playablesSDK) return;
+
+  var HANDLER_NAME = 'playablesGameEventHandler';
+  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
+  var RAF_FRAME_THRESHOLD = 3;
+
+  var gameReadySent = false;
+  var firstInteractionSent = false;
+  var errorSent = false;
+  var frameCount = 0;
+  var originalRAF = window.requestAnimationFrame;
+
+  // --- Transport Layer ---
+
+  function hasIOSBridge() {
+    return !!(window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers[HANDLER_NAME]);
+  }
+
+  function hasAndroidBridge() {
+    return !!(window[ANDROID_BRIDGE_NAME] &&
+              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+  }
+
+  function isInIframe() {
+    return !!(window.parent && window.parent !== window);
+  }
+
+  function sendEvent(eventName, payload) {
+    var message = {
+      type: eventName,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+
+    if (hasIOSBridge()) {
+      try {
+        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
+      } catch (e) { /* ignore */ }
+      return;
+    }
+
+    if (hasAndroidBridge()) {
+    try {
+      var p = payload || {};
+      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+      window[ANDROID_BRIDGE_NAME].postEvent(
+        eventName,
+        JSON.stringify(p)
+      );
+    } catch (e) { /* ignore */ }
+    return;
+  }
+
+    if (isInIframe()) {
+      try {
+        window.parent.postMessage(message, '*');
+      } catch (e) { /* ignore */ }
+      return;
+    }
+  }
+
+  // --- rAF Game-Ready Detection ---
+
+  function onFrame() {
+    if (gameReadySent) return;
+
+    frameCount++;
+    if (frameCount >= RAF_FRAME_THRESHOLD) {
+      gameReadySent = true;
+      sendEvent('game_ready', {
+        frame_count: frameCount,
+        detected_at: Date.now()
+      });
+      return;
+    }
+
+    originalRAF.call(window, onFrame);
+  }
+
+  if (originalRAF) {
+    window.requestAnimationFrame = function(callback) {
+      if (!gameReadySent) {
+        return originalRAF.call(window, function(timestamp) {
+          frameCount++;
+          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
+            gameReadySent = true;
+            sendEvent('game_ready', {
+              frame_count: frameCount,
+              detected_at: Date.now()
+            });
+          }
+          callback(timestamp);
+        });
+      }
+      return originalRAF.call(window, callback);
+    };
+  }
+
+  // --- First User Interaction Detection ---
+
+  function setupFirstInteractionDetection() {
+    var events = ['touchstart', 'mousedown', 'keydown'];
+
+    function onFirstInteraction() {
+      if (firstInteractionSent) return;
+      firstInteractionSent = true;
+      sendEvent('user_interaction_start', null);
+
+      for (var i = 0; i < events.length; i++) {
+        document.removeEventListener(events[i], onFirstInteraction, true);
+      }
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      document.addEventListener(events[i], onFirstInteraction, true);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
+  } else {
+    setupFirstInteractionDetection();
+  }
+
+  // --- Auto Error Capture ---
+
+  window.addEventListener('error', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    sendEvent('error', {
+      message: event.message || 'Unknown error',
+      source: event.filename || '',
+      lineno: event.lineno || 0,
+      colno: event.colno || 0,
+      auto_captured: true
+    });
+  });
+
+  window.addEventListener('unhandledrejection', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    var reason = event.reason;
+    sendEvent('error', {
+      message: (reason instanceof Error) ? reason.message : String(reason),
+      type: 'unhandled_promise_rejection',
+      auto_captured: true
+    });
+  });
+
+  // --- Public API ---
+
+  window.playablesSDK = {
+    complete: function(score) {
+      sendEvent('game_ended', {
+        score: score,
+        completed: true
+      });
+    },
+
+    error: function(message) {
+      if (errorSent) return;
+      errorSent = true;
+      sendEvent('error', {
+        message: message || 'Unknown error',
+        auto_captured: false
+      });
+    },
+
+    sendEvent: function(eventName, payload) {
+      if (!eventName || typeof eventName !== 'string') return;
+      sendEvent(eventName, payload);
+    }
+  };
+
+  // Kick off rAF detection in case no game code calls rAF immediately
+  if (originalRAF) {
+    originalRAF.call(window, onFrame);
+  }
+})();</script>
+<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InnerBuild S01 — Outils du Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #000000;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  line-height: 1.65;
+  border-top: 4px solid #000000;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+h1, h2, h3 {
+  font-family: 'Syne', sans-serif;
+  line-height: 1.2;
+  margin: 0;
+}
+header {
+  padding: 1.5rem 0 1rem;
+}
+h1 {
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: -0.02em;
+}
+.subtitle {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  margin-top: 0.6rem;
+  opacity: 0.85;
+}
+h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 0.3rem;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  font-family: 'Syne', sans-serif;
+}
+h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+p { margin: 0.75rem 0; }
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  font-size: 0.9rem;
+}
+th, td {
+  border: 1px solid #000000;
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+tbody tr:hover {
+  background: #f5f5f5;
+}
+a {
+  color: #000000;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+a:hover, a:focus {
+  background: #000000;
+  color: #ffffff;
+  text-decoration: none;
+  outline: none;
+}
+ul {
+  margin: 0.75rem 0 1.5rem;
+  padding-left: 1.25rem;
+}
+ul.two-col {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.1rem 2rem;
+}
+ul.two-col li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #000000;
+}
+ul.two-col li a {
+  text-decoration: none;
+  word-break: break-all;
+}
+ul.templates {
+  list-style: square;
+  padding-left: 1.5rem;
+}
+ul.templates li {
+  padding: 0.4rem 0;
+}
+ul.templates li a {
+  text-decoration: none;
+  word-break: break-all;
+}
+.tools-list {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  border-top: 1px solid #000000;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+@media (max-width: 640px) {
+  ul.two-col {
+    grid-template-columns: 1fr;
+  }
+  th, td { padding: 0.6rem; font-size: 0.85rem; }
+}
+@media print {
+  body { border-top: none; }
+  a { text-decoration: none; }
+  tbody tr:hover { background: transparent; }
+  .container { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>InnerBuild S01 — Outils du Challenge</h1>
+    <p class="subtitle">7 Jours pour ton Portfolio Personnel</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Outils du challenge</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Outil</th>
+              <th>Lien</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Site Insight</td>
+              <td><a href="https://sitesight-audit.vercel.app/" target="_blank" rel="noopener">https://sitesight-audit.vercel.app/</a></td>
+              <td>Audit performances, SEO, accessibilité</td>
+            </tr>
+            <tr>
+              <td>Vaultify</td>
+              <td><a href="https://vaultify-woad.vercel.app/" target="_blank" rel="noopener">https://vaultify-woad.vercel.app/</a></td>
+              <td>Recherche d'inspiration sur GitHub</td>
+            </tr>
+            <tr>
+              <td>StoryToon (obligatoire)</td>
+              <td><a href="https://opal.google/app/1KjIn4vMfJL-hOg_yUK9b-xMM4Oz5XOqB" target="_blank" rel="noopener">https://opal.google/app/1KjIn4vMfJL-hOg_yUK9b-xMM4Oz5XOqB</a></td>
+              <td>Génère des visuels IA pour tes publications</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Outils SEO & analyse</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Outil</th>
+              <th>Lien</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SEORadar</td>
+              <td><a href="https://seoradar.lovable.app/" target="_blank" rel="noopener">https://seoradar.lovable.app/</a></td>
+              <td>Analyse SEO en profondeur</td>
+            </tr>
+            <tr>
+              <td>Taap.it Visitors</td>
+              <td><a href="https://taap.it/visitors" target="_blank" rel="noopener">https://taap.it/visitors</a></td>
+              <td>Analytics simple + link in bio</td>
+            </tr>
+            <tr>
+              <td>Landing Detective</td>
+              <td><a href="https://landingdetective.lovable.app/" target="_blank" rel="noopener">https://landingdetective.lovable.app/</a></td>
+              <td>Analyse de landing pages</td>
+            </tr>
+            <tr>
+              <td>AI Reco Radar</td>
+              <td><a href="https://ai-reco-radar.lovable.app/" target="_blank" rel="noopener">https://ai-reco-radar.lovable.app/</a></td>
+              <td>Scanner de recommandations IA</td>
+            </tr>
+            <tr>
+              <td>PageSpeed Insights</td>
+              <td><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">https://pagespeed.web.dev/</a></td>
+              <td>Test vitesse et performances</td>
+            </tr>
+            <tr>
+              <td>Ubersuggest</td>
+              <td><a href="https://neilpatel.com/ubersuggest/" target="_blank" rel="noopener">https://neilpatel.com/ubersuggest/</a></td>
+              <td>Mots-clés liés à ton nom et tes compétences</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ressources UI/UX</h2>
+      <ul class="two-col">
+        <li><a href="https://ui.aceternity.com/" target="_blank" rel="noopener">https://ui.aceternity.com/</a></li>
+        <li><a href="https://futureui.studio/" target="_blank" rel="noopener">https://futureui.studio/</a></li>
+        <li><a href="https://semantic-ui.com/" target="_blank" rel="noopener">https://semantic-ui.com/</a></li>
+        <li><a href="https://tailwindcss.com/plus/ui-blocks" target="_blank" rel="noopener">https://tailwindcss.com/plus/ui-blocks</a></li>
+        <li><a href="https://daisyui.com/" target="_blank" rel="noopener">https://daisyui.com/</a></li>
+        <li><a href="https://flowbite.com/illustrations/" target="_blank" rel="noopener">https://flowbite.com/illustrations/</a></li>
+        <li><a href="https://magicui.design" target="_blank" rel="noopener">https://magicui.design</a></li>
+        <li><a href="https://flyonui.com/" target="_blank" rel="noopener">https://flyonui.com/</a></li>
+        <li><a href="https://heroui.com/" target="_blank" rel="noopener">https://heroui.com/</a></li>
+        <li><a href="https://ariakit.com/" target="_blank" rel="noopener">https://ariakit.com/</a></li>
+        <li><a href="https://component.gallery/" target="_blank" rel="noopener">https://component.gallery/</a></li>
+        <li><a href="https://ionicframework.com/" target="_blank" rel="noopener">https://ionicframework.com/</a></li>
+        <li><a href="https://www.untitledui.com/" target="_blank" rel="noopener">https://www.untitledui.com/</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Templates réutilisables</h2>
+      <ul class="templates">
+        <li><a href="https://github.com/REBCDR07/Hand-Controlled_Digital_Art" target="_blank" rel="noopener">https://github.com/REBCDR07/Hand-Controlled_Digital_Art</a></li>
+        <li><a href="https://github.com/Hyppolite-DEDEKON/portfolio2_template_html" target="_blank" rel="noopener">https://github.com/Hyppolite-DEDEKON/portfolio2_template_html</a></li>
+        <li><a href="https://github.com/Hyppolite-DEDEKON/portfolio1_template_html" target="_blank" rel="noopener">https://github.com/Hyppolite-DEDEKON/portfolio1_template_html</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Autres outils cités</h2>
+      <h3>Développement & déploiement</h3>
+      <p class="tools-list">VS Code (Prettier, Live Server, GitLens), GitHub, Vercel, Netlify, GitHub Pages, Cloudflare Pages, Google Search Console</p>
+      
+      <h3>Design & IA</h3>
+      <p class="tools-list">Figma, Canva, ChatGPT, Grok, Claude, Cursor, GitHub Copilot</p>
+      
+      <h3>Stacks autorisées</h3>
+      <p class="tools-list">HTML/CSS/JS pur, Tailwind, Bootstrap, React, Vue, Next.js, Astro, Svelte</p>
+    </section>
+  </main>
+
+  <footer>
+    FrontForge — Forge Ton Frontend aujourd'hui. 🔥
+  </footer>
+</div>
+</body>
+</html>

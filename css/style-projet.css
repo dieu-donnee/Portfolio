@@ -1,0 +1,279 @@
+/* ═══════════════════════════════════════
+   D⁴Dev — Projects Page Styles
+   ═══════════════════════════════════════ */
+
+/* ─── Projects Hero ─── */
+.projects-hero {
+    padding: calc(var(--nav-height) + 80px) 6% 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: 700px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(155, 93, 229, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.projects-hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.projects-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.projects-title em {
+    font-style: italic;
+    font-weight: 700;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.projects-sub {
+    font-size: 1rem;
+    color: var(--blanc-dim);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* ─── Filter Tabs ─── */
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 50px 0;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(240, 237, 248, 0.15);
+    background: transparent;
+    color: var(--blanc-dim);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    border-color: var(--rose-deep);
+    background: rgba(232, 70, 124, 0.1);
+    color: var(--rose-light);
+    box-shadow: var(--glow-rose);
+}
+
+/* ─── Projects Grid ─── */
+.projects-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 6% clamp(60px, 10vw, 120px);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+    gap: clamp(24px, 4vw, 40px);
+}
+
+/* ─── Project Card ─── */
+.project-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(26, 26, 39, 0.7);
+    border: var(--border-glass);
+    transition: all 0.45s var(--ease-smooth);
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    border-color: rgba(232, 70, 124, 0.3);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), var(--glow-rose);
+}
+
+/* 3D tilt effect on hover (powered by JS) */
+.project-card.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* ─── Card Image Area ─── */
+.card-image {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+}
+
+.project-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-image-glow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(232, 70, 124, 0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+/* ─── Card Content ─── */
+.card-body {
+    padding: clamp(20px, 4vw, 30px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.card-category {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-light);
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--blanc-nacre);
+    line-height: 1.2;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--blanc-dim);
+    line-height: 1.7;
+    flex: 1;
+}
+
+/* ─── Card Tags ─── */
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.card-tag {
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(240, 237, 248, 0.1);
+    font-size: 0.72rem;
+    color: var(--blanc-dim);
+    font-weight: 500;
+}
+
+/* ─── Card Footer ─── */
+.card-footer {
+    padding: 18px 30px;
+    border-top: var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-metrics {
+    display: flex;
+    gap: 16px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-value {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.metric-label {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--blanc-dim);
+    opacity: 0.6;
+}
+
+.card-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(232, 70, 124, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rose-light);
+    font-size: 1rem;
+    transition: all 0.3s var(--ease-spring);
+    text-decoration: none;
+}
+
+.card-link:hover {
+    background: var(--gradient-brand);
+    border-color: transparent;
+    color: white;
+    transform: rotate(45deg) scale(1.1);
+    box-shadow: var(--glow-rose);
+}
+
+/* ─── Media Queries ─── */
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}

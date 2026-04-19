@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motel le château — Étude de Cas | D⁴Dev portfolio</title>
+    <meta name="description" content="Optimisation SEO et stratégie marketing pour le Motel le château. Augmentez la visibilité et les réservations directes.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/style-projet-detail.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <a class="nav-logo" href="index.html" aria-label="D⁴Dev">
+            <span class="logo-d">D</span>
+            <sup class="logo-exp">4</sup>
+            <span class="logo-dev">Dev</span>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="about.html">À Propos</a>
+            <a href="skills.html">Expertise</a>
+            <a href="projet.html" class="active">Projets</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="nav-cta">
+            <a href="contact.html" class="btn-nav">Travaillons ensemble</a>
+        </div>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        
+        <!-- ── Project Hero ── -->
+        <section class="project-hero">
+            <div class="project-hero-content" style="animation: fadeSlideUp 0.8s var(--ease-flow) 0.1s both;">
+                <a href="projet.html" class="back-to-projects">← Retour aux projets</a>
+                
+                <span class="project-category">SEO & Marketing Strategy</span>
+                <h1 class="project-title">Motel le château</h1>
+                <p class="project-subtitle">
+                    Imposer une présence digitale dans le secteur hôtelier. Une stratégie de visibilité locale axée sur le contenu et le référencement naturel.
+                </p>
+
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Rôle</span>
+                        <span class="meta-value">Expert SEO & Copywriter</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Client</span>
+                        <span class="meta-value">Secteur Hôtelier</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Type</span>
+                        <span class="meta-value">Marketing Local</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Statut</span>
+                        <span class="meta-value" style="color:var(--rose-light);">Optimisé</span>
+                    </div>
+                </div>
+
+                <!-- Visual Banner -->
+                <div class="banner-container">
+                    <div class="project-banner">
+                        <img src="../img/motel-chateau.png" alt="Motel le château SEO Showcase">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Article Details ── -->
+        <article class="project-article">
+            <div class="article-content">
+                
+                <section class="article-section" style="animation: fadeSlideUp 0.8s var(--ease-flow) 0.5s both;">
+                    <h2>Le Défi : Se Démarquer dans le Tourisme Local</h2>
+                    <p>
+                        Pour un établissement hôtelier, la visibilité ne s'achète pas seulement, elle se construit. Le Motel le château avait besoin d'une voix unique et d'un référencement solide pour attirer les voyageurs dès leur première recherche.
+                    </p>
+                </section>
+
+                <section class="article-section" style="animation: fadeSlideUp 0.8s var(--ease-flow) 0.5s both;">
+                    <h2>L'Approche : Le Contenu comme Levier de Confiance</h2>
+                    <p>
+                        Ma mission s'est articulée autour de trois piliers fondamentaux :
+                    </p>
+                    <ul class="challenge-list">
+                        <li><strong>Audit & Étude de Marché :</strong> Comprendre les attentes des voyageurs et analyser la concurrence directe.</li>
+                        <li><strong>Rédaction Web Optimisée :</strong> Création de contenus engageants qui ne parlent pas seulement des chambres, mais de l'expérience et du confort.</li>
+                        <li><strong>SEO Local :</strong> Optimisation des fiches et du site pour apparaître en tête des résultats lors des recherches ciblées par ville.</li>
+                    </ul>
+                </section>
+
+                <section class="article-section" style="animation: fadeSlideUp 0.8s var(--ease-flow) 0.5s both; text-align: center; margin-top: 100px; padding-bottom: 40px;">
+                    <h2>Dominez votre marché local</h2>
+                    <p style="margin-bottom: 40px; color: var(--gold);">
+                        Ne laissez pas vos clients dormir chez la concurrence. Soyez le premier choix.
+                    </p>
+                    
+                    <a href="contact.html" class="btn-primary">
+                        Booster ma visibilité ✦
+                    </a>
+                </section>
+
+            </div>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--blanc-dim); font-size: 0.8rem;">
+        <p>&copy; 2026 D⁴Dev — Dieu-donné Djivoessoun. De l'idée au revenu.</p>
+    </footer>
+
+    <script type="module">
+        import { initMobileMenu, initAnimateOnScroll } from '../js/utils.js';
+        initMobileMenu();
+        initAnimateOnScroll();
+    </script>
+</body>
+</html>

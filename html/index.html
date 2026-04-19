@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D⁴Dev — Dieu-donné Djivoessoun | Digital Business Builder & AI Architect</title>
+    <meta name="description"
+        content="Portfolio de D⁴Dev, Digital Business Builder & AI Architect. Je transforme vos idées en sources de revenus automatisées grâce à l'IA et à l'automatisation.">
+    <meta name="keywords" content="digital business, AI architect, automatisation, portfolio, développeur">
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/style-index.css">
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════════
+         NAVBAR
+    ══════════════════════════════════════════════════ -->
+    <header class="navbar" id="navbar">
+        <a class="nav-logo" href="index.html" aria-label="D⁴Dev — Accueil">
+            <span class="logo-d">D</span>
+            <sup class="logo-exp">4</sup>
+            <span class="logo-dev">Dev</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Navigation principale">
+            <a href="index.html" class="active">Accueil</a>
+            <a href="about.html">À Propos</a>
+            <a href="skills.html">Expertise</a>
+            <a href="projet.html">Projets</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+            <a href="contact.html" class="btn-nav">Travaillons ensemble</a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button class="nav-hamburger" aria-label="Menu mobile" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À Propos</a>
+        <a href="skills.html">Expertise</a>
+        <a href="projet.html">Projets</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <!-- ══════════════════════════════════════════════
+             HERO — Three.js Particle Background
+        ══════════════════════════════════════════════════ -->
+        <section class="hero-section" id="hero">
+            <!-- Three.js canvas -->
+            <canvas id="hero-canvas" aria-hidden="true"></canvas>
+            <!-- Gradient overlay for readability -->
+            <div class="hero-overlay" aria-hidden="true"></div>
+
+            <div class="hero-content">
+                <!-- ── Left Column ── -->
+                <div class="hero-left">
+                    <div class="hero-eyebrow">
+                        <span class="dot"></span>
+                        Digital Business Builder & AI Architect
+                    </div>
+
+                    <h1 class="hero-title">
+                        <span class="title-line">SCALEZ VOTRE</span>
+                        <strong>BUSINESS</strong>
+                    </h1>
+
+                    <p class="hero-desc">
+                        Je crée des systèmes intelligents qui automatisent votre croissance,
+                        maximisent vos profits et libèrent votre temps. De la création de contenu
+                        automatisée via IA aux plateformes business haute-performance.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="contact.html" class="btn-primary" id="cta-discutons">
+                            ✦ Discutons de votre projet
+                        </a>
+                        <a href="projet.html" class="btn-secondary" id="cta-projets">
+                            Voir mes projets →
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- ── Right Column ── -->
+                <div class="hero-right">
+                    <div class="profile-frame">
+                        <img src="../source/1769596679175.svg" alt="D⁴ Content Engine — Automatisation Totale" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" aria-hidden="true">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- ── Trust Ribbon ── -->
+        <div class="trust-ribbon animate-on-scroll">
+            <div class="scrolling-logos">
+                <div class="logo-track">
+                    <span>n8n</span> <span>Make</span> <span>Shopify</span> <span>OpenAI</span> <span>Claude</span> <span>Supabase</span> <span>n8n</span> <span>Make</span> <span>Shopify</span> <span>OpenAI</span> <span>Claude</span> <span>Supabase</span>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item"><strong>50+</strong> <span>Projets</span></div>
+                <div class="stat-item"><strong>3x</strong> <span>ROI Moyen</span></div>
+                <div class="stat-item"><strong>100+</strong> <span>Automations</span></div>
+            </div>
+        </div>
+
+
+        <!-- ══════════════════════════════════════════════
+             STATS & SERVICES SECTION
+        ══════════════════════════════════════════════════ -->
+        
+
+        <!-- ══════════════════════════════════════════════
+             EXPERTISE SECTION
+        ══════════════════════════════════════════════════ -->
+        <section class="expertise-section animate-on-scroll" id="expertise">
+            <div class="section-header">
+                <span class="section-tag">Mon Expertise</span>
+                <h2>Ce que je crée <span>pour vous</span></h2>
+                <p>Des solutions sur mesure à l'intersection de l'intelligence artificielle,
+                    du no-code et du business digital.</p>
+            </div>
+
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="card-icon">🤖</div>
+                    <h3>Intelligence Artificielle</h3>
+                    <p>Intégration de LLMs, agents autonomes et workflows IA dans vos processus
+                        de création, vente et support client.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Automatisation</h3>
+                    <p>Conception de workflows n8n, Make et Zapier pour éliminer les tâches
+                        répétitives et scaler votre business à coût zéro.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Business Systems</h3>
+                    <p>Construction de tunnels de vente, plateformes monétisées et systèmes
+                        de génération de revenus passifs — de A à Z.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Process Section ── -->
+        <section class="process-section animate-on-scroll" id="methode">
+            <div class="section-header">
+                <span class="section-tag">Ma Méthode</span>
+                <h2>Votre système en <span>3 phases</span></h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-num">01</div>
+                    <h3>Analyse</h3>
+                    <p>Audit de vos frictions et définition de l'architecture optimale pour vos revenus.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-num">02</div>
+                    <h3>Build</h3>
+                    <p>Développement de vos automations et de votre infrastructure digitale.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-num">03</div>
+                    <h3>Scale</h3>
+                    <p>Lancement et optimisation pour maximiser votre liberté et vos profits.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Social Proof ── -->
+        <section class="trust-section animate-on-scroll">
+            <div class="section-header">
+                <span class="section-tag">Témoignages</span>
+                <h2>Ils ont fait <span>le saut</span></h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p>"D4 a littéralement automatisé ma liberté. Je ne m'occupe plus de l'administratif."</p>
+                    <div class="client-info">
+                        <strong>Léa R.</strong> <span>E-commerçante</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FAQ ── -->
+        <section class="faq-section animate-on-scroll">
+            <div class="section-header">
+                <span class="section-tag">FAQ</span>
+                <h2>Des réponses à <span>vos doutes</span></h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Est-ce adapté aux petits business ?</summary>
+                    <p>L'automatisation est d'autant plus vitale pour les petites équipes qui manquent de temps.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quels sont les délais ?</summary>
+                    <p>7 à 25 jours selon la complexité de l'architecture demandée.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ── Final CTA ── -->
+        <section class="bottom-cta animate-on-scroll">
+            <div class="cta-box">
+                <h2>Prêt à transformer votre idée ?</h2>
+                <a href="contact.html" class="btn-primary">Démarrer le voyage ✦</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ══════════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════════════ -->
+    <footer>
+        <a class="footer-logo" href="index.html" aria-label="D⁴Dev">
+            <span class="logo-d" style="font-size:1.4rem;">D</span>
+            <sup class="logo-exp" style="font-size:0.6rem;">4</sup>
+            <span class="logo-dev" style="font-size:0.75rem;">Dev</span>
+        </a>
+
+        <p class="footer-copy">© 2026 D⁴Dev — Dieu-donné Djivoessoun. De l'idée au revenu.</p>
+
+        <nav class="footer-links" aria-label="Liens footer">
+            <a href="about.html">À Propos</a>
+            <a href="skills.html">Expertise</a>
+            <a href="projet.html">Projets</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </footer>
+
+    <!-- Three.js Hero Scene -->
+    <script type="module" src="../js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+/* ─── Case Study Detail Page Styles ─── */
+.project-hero {
+    position: relative;
+    padding-top: calc(var(--nav-height) + clamp(40px, 8vw, 80px));
+    padding-bottom: clamp(40px, 6vw, 60px);
+    background: var(--noir-velvet);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.banner-container {
+    max-width: 1100px;
+    margin: clamp(40px, 8vw, 80px) auto 0;
+    padding: 0 4%;
+    animation: fadeSlideUp 0.8s var(--ease-flow) 0.6s both;
+}
+
+.project-banner {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    border: var(--border-glass);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+
+.project-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 6%;
+}
+
+.project-category {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.project-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--blanc-nacre);
+}
+
+.project-subtitle {
+    font-size: 1.2rem;
+    color: var(--blanc-dim);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
+}
+
+.meta-item {
+    text-align: left;
+}
+
+.meta-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--rose-light);
+    margin-bottom: 8px;
+}
+
+.meta-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--blanc-nacre);
+}
+
+/* ─── Article Content ─── */
+.project-article {
+    padding: clamp(60px, 10vw, 100px) 6%;
+    background: var(--noir-base);
+}
+
+.article-content {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.article-section {
+    margin-bottom: 80px;
+}
+
+.article-section h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--blanc-nacre);
+    margin-bottom: 24px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.article-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--blanc-dim);
+    margin-bottom: 20px;
+}
+
+.challenge-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.challenge-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+    color: var(--blanc-nacre);
+    line-height: 1.6;
+}
+
+.challenge-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--rose-deep);
+    font-size: 1.2rem;
+}
+
+.highlight-box {
+    background: rgba(232, 70, 124, 0.05);
+    border-left: 3px solid var(--rose-deep);
+    padding: 30px;
+    margin: 40px 0;
+    border-radius: 0 var(--radius-soft) var(--radius-soft) 0;
+}
+
+.highlight-box p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* ─── Back Button ─── */
+.back-to-projects {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    color: var(--blanc-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.back-to-projects:hover {
+    color: var(--rose-light);
+}

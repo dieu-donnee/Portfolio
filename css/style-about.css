@@ -1,0 +1,393 @@
+/* ═══════════════════════════════════════
+   D⁴Dev — About Page Styles
+   ═══════════════════════════════════════ */
+
+/* ─── About Hero ─── */
+.about-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: var(--nav-height);
+}
+
+#about-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, transparent 0%, var(--noir-velvet) 75%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 6%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+}
+
+.about-left-text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.about-right-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--lavender-light);
+}
+
+.about-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--lavender);
+}
+
+.about-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--blanc-nacre);
+}
+
+.about-title em {
+    font-style: italic;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}
+
+.about-intro {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--blanc-dim);
+}
+
+.about-intro strong {
+    color: var(--blanc-nacre);
+    font-weight: 600;
+}
+
+/* ─── Values Badges ─── */
+.values-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.value-badge {
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(232, 70, 124, 0.3);
+    background: rgba(232, 70, 124, 0.08);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--rose-light);
+    letter-spacing: 0.5px;
+    transition: all 0.3s var(--ease-smooth);
+    cursor: default;
+}
+
+.value-badge:hover {
+    background: rgba(232, 70, 124, 0.18);
+    border-color: var(--rose-deep);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-rose);
+}
+
+.value-badge.lavender {
+    border-color: rgba(155, 93, 229, 0.3);
+    background: rgba(155, 93, 229, 0.08);
+    color: var(--lavender-light);
+}
+
+.value-badge.lavender:hover {
+    background: rgba(155, 93, 229, 0.18);
+    border-color: var(--lavender);
+    box-shadow: var(--glow-lavender);
+}
+
+.value-badge.gold {
+    border-color: rgba(248, 181, 0, 0.3);
+    background: rgba(248, 181, 0, 0.08);
+    color: var(--gold-light);
+}
+
+/* ─── About Right (3D Canvas placeholder + timeline) ─── */
+.about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+}
+
+.about-3d-frame {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    border: 1px solid rgba(155, 93, 229, 0.2);
+    overflow: hidden;
+    position: relative;
+    background: rgba(26, 26, 39, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl);
+}
+
+.character-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s var(--ease-smooth);
+}
+
+.about-3d-frame:hover .character-image {
+    transform: scale(1.05);
+}
+
+.about-3d-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.8), transparent 40%);
+    pointer-events: none;
+}
+
+.canvas-label {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender-light);
+    opacity: 0.6;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* ─── Timeline Section ─── */
+.timeline-section {
+    padding: var(--section-pad);
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.timeline {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--rose-deep), var(--lavender), transparent);
+}
+
+.timeline-item {
+    display: flex;
+    gap: 36px;
+    margin-bottom: 56px;
+    position: relative;
+}
+
+.timeline-dot {
+    position: relative;
+    flex-shrink: 0;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    background: var(--gradient-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow: var(--glow-rose);
+    z-index: 1;
+    transition: transform 0.3s var(--ease-spring);
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.2);
+}
+
+.timeline-body {
+    flex: 1;
+    padding-top: 6px;
+}
+
+.timeline-year {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-light);
+    margin-bottom: 6px;
+}
+
+.timeline-body h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--blanc-nacre);
+    margin-bottom: 10px;
+}
+
+.timeline-body p {
+    font-size: 0.92rem;
+    color: var(--blanc-dim);
+    line-height: 1.7;
+}
+
+/* ─── Manifesto Section ─── */
+.manifesto-section {
+    padding: var(--section-pad);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.manifesto-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(232, 70, 124, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.manifesto-quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--blanc-nacre);
+    max-width: 800px;
+    margin: 0 auto 24px;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+}
+
+.manifesto-quote span {
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}
+
+.manifesto-author {
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blanc-dim);
+    opacity: 0.6;
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+    .about-hero-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .about-3d-frame {
+        height: 280px;
+    }
+    .timeline::before {
+        left: 18px;
+    }
+}
+
+/* ─── Philosophy Section ─── */
+.philosophy-section {
+    padding: var(--section-pad);
+    background: linear-gradient(to bottom, transparent, rgba(155, 93, 229, 0.03), transparent);
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: var(--max-width);
+    margin: 40px auto 0;
+}
+
+.philosophy-card {
+    padding: 40px;
+    background: rgba(26, 26, 39, 0.4);
+    border-radius: 24px;
+    border: var(--border-glass);
+    transition: all 0.4s var(--ease-smooth);
+}
+
+.philosophy-card:hover {
+    background: rgba(155, 93, 229, 0.05);
+    border-color: var(--lavender);
+    transform: translateY(-5px);
+}
+
+.philosophy-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--lavender-light);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.philosophy-card p {
+    font-size: 0.95rem;
+    color: var(--blanc-dim);
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+    }
+}
