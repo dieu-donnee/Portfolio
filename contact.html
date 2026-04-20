@@ -160,7 +160,10 @@
 
                     <!-- ── Right: Form ── -->
                     <div class="contact-form-container">
-                        <form id="contact-form" class="glass">
+                        <form id="contact-form" class="glass" action="https://formsubmit.co/ajax/djivoessoundonadieudonnee@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="Nouveau message depuis le portfolio D4Dev">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="text" name="_honey" style="display:none">
                             <div class="form-group">
                                 <label for="name">Nom complet</label>
                                 <input type="text" id="name" name="name" placeholder="Ex: Jean Dupont" required>
@@ -221,21 +224,38 @@
     <!-- Scripts -->
     <script type="module" src="./js/app.js"></script>
     <script type="module">
-        // Form Submission Mock
+        // Real form submission via FormSubmit AJAX endpoint
         const form = document.getElementById('contact-form');
         const status = document.getElementById('form-status');
+        const submitBtn = form?.querySelector('button[type="submit"]');
 
         if (form) {
-            form.addEventListener('submit', (e) => {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 status.textContent = 'Envoi en cours...';
                 status.className = 'form-status sending';
-                
-                setTimeout(() => {
+                if (submitBtn) submitBtn.disabled = true;
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { Accept: 'application/json' }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Request failed');
+                    }
+
                     status.textContent = 'Merci ! Votre message a été envoyé avec succès.';
                     status.className = 'form-status success';
                     form.reset();
-                }, 1500);
+                } catch (error) {
+                    status.textContent = 'Échec de l’envoi. Réessayez ou contactez-moi directement par email.';
+                    status.className = 'form-status error';
+                } finally {
+                    if (submitBtn) submitBtn.disabled = false;
+                }
             });
         }
     </script>
