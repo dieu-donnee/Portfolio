@@ -28,6 +28,7 @@
 .info-card {
     padding: 40px;
     border-radius: var(--radius-soft);
+    box-shadow: var(--shadow-sm);
 }
 
 .info-card h3 {
@@ -59,8 +60,10 @@
     align-items: center;
     gap: 15px;
     padding: 15px 20px;
-    background: rgba(240, 237, 248, 0.03);
-    border: 1px solid rgba(240, 237, 248, 0.05);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-soft);
+    border: var(--border-glass);
     border-radius: 12px;
     transition: all 0.3s var(--ease-smooth);
 }
@@ -101,7 +104,9 @@
 }
 
 .social-item:hover {
-    background: rgba(232, 70, 124, 0.08);
+    background:
+        linear-gradient(180deg, rgba(232, 70, 124, 0.1), rgba(255, 255, 255, 0.02)),
+        var(--surface-glass);
     border-color: rgba(232, 70, 124, 0.3);
     transform: translateX(10px);
 }
@@ -125,7 +130,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-md);
 }
 
 .form-group {
@@ -147,7 +152,7 @@
 .form-group select,
 .form-group textarea {
     padding: 15px 20px;
-    background: rgba(10, 10, 26, 0.5);
+    background: rgba(15, 17, 23, 0.72);
     border: 1px solid rgba(240, 237, 248, 0.1);
     border-radius: 12px;
     color: var(--blanc-nacre);
@@ -171,7 +176,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--rose-light);
-    background: rgba(10, 10, 26, 0.8);
+    background: rgba(15, 17, 23, 0.9);
     box-shadow: 0 0 15px rgba(232, 70, 124, 0.15);
 }
 

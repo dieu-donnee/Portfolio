@@ -86,28 +86,41 @@
 /* ─── Projects Grid ─── */
 .projects-section {
     max-width: var(--max-width);
+    width: 1200px;
+    
     margin: 0 auto;
-    padding: 0 6% clamp(60px, 10vw, 120px);
+    padding: 0 10% clamp(30px, 5vw, 10px);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: clamp(24px, 4vw, 40px);
+}
+
+.project-card:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+   
 }
 
 /* ─── Project Card ─── */
 .project-card {
     border-radius: 20px;
     overflow: hidden;
-    background: rgba(26, 26, 39, 0.7);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+        var(--surface-glass-strong);
     border: var(--border-glass);
+    box-shadow: var(--shadow-sm);
     transition: all 0.45s var(--ease-smooth);
     position: relative;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
+    
+   
 }
+
+
 
 .card-wrapper {
     display: flex;
@@ -117,8 +130,9 @@
 
 .project-card:hover {
     transform: translateY(-10px) scale(1.01);
-    border-color: rgba(232, 70, 124, 0.3);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4), var(--glow-rose);
+    box-shadow: var(--shadow-md);
+    
+    
 }
 
 /* 3D tilt effect on hover (powered by JS) */
@@ -129,12 +143,14 @@
 
 /* ─── Card Image Area ─── */
 .card-image {
-    width: 100%;
-    height: 240px;
+ 
+    height: 150px;
+    flex-shrink: 0;
     position: relative;
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    
 }
 
 
@@ -156,8 +172,7 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: radial-gradient(circle at center, rgba(232, 70, 124, 0.15), transparent 70%);
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.4s ease;
     pointer-events: none;
 }
@@ -190,9 +205,17 @@
 .card-desc {
     font-size: 0.9rem;
     color: var(--blanc-dim);
-    line-height: 1.7;
+    line-height: 1.6;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
+
+
+
 
 /* ─── Card Tags ─── */
 .card-tags {
@@ -272,8 +295,25 @@
 }
 
 /* ─── Media Queries ─── */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .project-card:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+}
+
+@media (max-width: 600px) {
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .project-card:first-child {
+        grid-column: span 1;
+        grid-row: span 1;
+        aspect-ratio: 1 / 1;
     }
 }

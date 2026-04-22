@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    
 }
 
 /* Three.js Canvas behind content */
@@ -207,8 +206,10 @@
     align-items: center;
     gap: 14px;
     padding: 14px 20px;
-    background: rgba(26, 26, 39, 0.7);
-    border: 1px solid rgba(232, 70, 124, 0.15);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-strong);
+    border: var(--border-glass);
     border-radius: var(--radius-soft);
     backdrop-filter: blur(10px);
     transition: all 0.35s var(--ease-smooth);
@@ -295,9 +296,12 @@
 .expertise-card {
     padding: 40px 32px;
     border-radius: 20px;
-    background: rgba(26, 26, 39, 0.6);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+        var(--surface-glass);
     border: var(--border-glass);
     backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-sm);
     transition: all 0.4s var(--ease-smooth);
     position: relative;
     overflow: hidden;
@@ -322,7 +326,7 @@
 .expertise-card:hover {
     transform: translateY(-8px);
     border-color: rgba(232, 70, 124, 0.3);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), var(--glow-rose);
+    box-shadow: var(--shadow-md), 0 0 24px rgba(232, 70, 124, 0.18);
 }
 
 .card-icon {
@@ -416,7 +420,7 @@
 /* ─── Trust Ribbon ─── */
 .trust-ribbon {
     padding: 60px 0;
-    background: rgba(10, 10, 15, 0.4);
+    background: rgba(15, 17, 23, 0.58);
     border-top: var(--border-glass);
     border-bottom: var(--border-glass);
     overflow: hidden;
@@ -495,30 +499,37 @@
 
 .process-card {
     padding: 60px 40px;
-    background: rgba(26, 26, 39, 0.3);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-soft);
     border-radius: 24px;
     border: var(--border-glass);
+    box-shadow: var(--shadow-sm);
     position: relative;
     transition: all 0.4s var(--ease-smooth);
     overflow: hidden;
 }
 
 .process-card:hover {
-    background: rgba(232, 70, 124, 0.05);
+    background:
+        linear-gradient(180deg, rgba(232, 70, 124, 0.08), rgba(255, 255, 255, 0.015)),
+        var(--surface-glass);
     transform: translateY(-8px);
     border-color: var(--rose-light);
+    box-shadow: var(--shadow-md);
 }
 
 .process-num {
     font-family: var(--font-accent);
     font-size: 5rem;
     font-weight: 700;
-    color: var(--blanc-faint);
+    color:  white;
     position: absolute;
     top: 10px;
     right: 20px;
     line-height: 1;
     z-index: 0;
+    
 }
 
 .process-card h3 {
@@ -553,11 +564,13 @@
     max-width: none;
     margin: 0;
     padding: 44px 30px;
-    background: rgba(26, 26, 39, 0.8);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-strong);
     border-radius: 32px;
     text-align: left;
     border: var(--border-glass);
-    box-shadow: 0 0 50px rgba(155, 93, 229, 0.1);
+    box-shadow: var(--shadow-md), 0 0 36px rgba(155, 93, 229, 0.08);
     position: relative;
 }
 
@@ -603,7 +616,9 @@
 }
 
 .faq-item {
-    background: rgba(26, 26, 39, 0.5);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-soft);
     border-radius: 20px;
     border: var(--border-glass);
     transition: all 0.3s ease;

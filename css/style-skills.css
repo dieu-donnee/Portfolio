@@ -35,6 +35,12 @@
     line-height: 1.8;
 }
 
+.skills-hero-actions {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+}
+
 /* ─── Sphere Section ─── */
 .sphere-section {
     display: grid;
@@ -51,8 +57,11 @@
     height: 500px;
     border-radius: 24px;
     overflow: hidden;
-    background: rgba(26, 26, 39, 0.4);
-    border: 1px solid rgba(155, 93, 229, 0.15);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-soft);
+    border: var(--border-glass);
+    box-shadow: var(--shadow-sm);
 }
 
 #skills-canvas {
@@ -161,8 +170,10 @@
 .tech-tag {
     padding: 12px 24px;
     border-radius: var(--radius-pill);
-    border: 1px solid rgba(240, 237, 248, 0.1);
-    background: rgba(26, 26, 39, 0.6);
+    border: var(--border-glass);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+        var(--surface-glass);
     font-size: 0.82rem;
     font-weight: 500;
     color: var(--blanc-nacre);

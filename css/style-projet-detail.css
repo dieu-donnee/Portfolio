@@ -3,7 +3,7 @@
     position: relative;
     padding-top: calc(var(--nav-height) + clamp(40px, 8vw, 80px));
     padding-bottom: clamp(40px, 6vw, 60px);
-    background: var(--noir-velvet);
+    background: var(--noir-soft);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
 }
@@ -20,7 +20,7 @@
     border-radius: 24px;
     overflow: hidden;
     border: var(--border-glass);
-    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow-xl);
 }
 
 .project-banner img {
@@ -67,6 +67,15 @@
     gap: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 40px;
+}
+
+.project-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .meta-item {

@@ -158,10 +158,12 @@
     max-width: 450px;
     aspect-ratio: 1 / 1;
     border-radius: 24px;
-    border: 1px solid rgba(155, 93, 229, 0.2);
+    border: var(--border-glass);
     overflow: hidden;
     position: relative;
-    background: rgba(26, 26, 39, 0.4);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-soft);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -184,7 +186,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10, 10, 15, 0.8), transparent 40%);
+    background: linear-gradient(to top, rgba(15, 17, 23, 0.72), transparent 40%);
     pointer-events: none;
 }
 
@@ -360,16 +362,22 @@
 
 .philosophy-card {
     padding: 40px;
-    background: rgba(26, 26, 39, 0.4);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01)),
+        var(--surface-glass-soft);
     border-radius: 24px;
     border: var(--border-glass);
+    box-shadow: var(--shadow-sm);
     transition: all 0.4s var(--ease-smooth);
 }
 
 .philosophy-card:hover {
-    background: rgba(155, 93, 229, 0.05);
+    background:
+        linear-gradient(180deg, rgba(155, 93, 229, 0.08), rgba(255, 255, 255, 0.02)),
+        var(--surface-glass);
     border-color: var(--lavender);
     transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
 }
 
 .philosophy-card h3 {
